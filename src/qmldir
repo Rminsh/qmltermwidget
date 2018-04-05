@@ -1,4 +1,4 @@
 module QMLTermWidget
+classname QmltermwidgetPlugin
 plugin qmltermwidget
 QMLTermScrollbar 1.0 QMLTermScrollbar.qml
-

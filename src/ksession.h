@@ -42,6 +42,8 @@ class KSession : public QObject
     Q_PROPERTY(QString  history READ getHistory)
     Q_PROPERTY(bool hasActiveProcess READ hasActiveProcess)
     Q_PROPERTY(QString foregroundProcessName READ foregroundProcessName)
+    Q_PROPERTY(QStringList environment READ environment WRITE setEnvironment NOTIFY environmentChanged)
+    Q_PROPERTY(QStringList systemEnvironment READ systemEnvironment NOTIFY systemEnvironmentChanged)
 
 public:
     KSession(QObject *parent = 0);
@@ -59,6 +61,8 @@ public:
 
     //environment
     void setEnvironment(const QStringList & environment);
+    QStringList environment() const;
+    QStringList systemEnvironment() const;
 
     //Initial working directory
     void setInitialWorkingDirectory(const QString & dir);
@@ -112,6 +116,8 @@ signals:
 
     void termGetFocus();
     void termLostFocus();
+    void environmentChanged();
+    void systemEnvironmentChanged();
 
     void termKeyPressed(QKeyEvent *);
 

@@ -24,6 +24,7 @@
 #include "ksession.h"
 
 // Qt
+#include <QProcess>
 #include <QTextCodec>
 
 // Konsole
@@ -166,7 +167,21 @@ void KSession::changeDir(const QString &dir)
 
 void KSession::setEnvironment(const QStringList &environment)
 {
+    if(m_session->environment() == environment)
+        return;
+
     m_session->setEnvironment(environment);
+    Q_EMIT environmentChanged();
+}
+
+QStringList KSession::environment() const
+{
+    return m_session->environment();
+}
+
+QStringList KSession::systemEnvironment() const
+{
+    return QProcess::systemEnvironment();
 }
 
 
