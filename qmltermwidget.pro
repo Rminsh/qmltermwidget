@@ -3,6 +3,11 @@ TARGET = qmltermwidget
 QT += qml quick widgets
 CONFIG += qt plugin
 
+static {
+    QMAKE_MOC_OPTIONS += -Muri=$$uri
+    DEFINES += QML_TERM_WIDGET_STATIC_BUILD
+}
+
 include(lib.pri)
 
 DESTDIR = $$OUT_PWD/QMLTermWidget

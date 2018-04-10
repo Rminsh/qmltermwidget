@@ -9,6 +9,17 @@
 
 using namespace Konsole;
 
+#ifdef QML_TERM_WIDGET_STATIC_BUILD
+
+bool qmlTermWidgetPlugin_registerTypes()
+{
+    qmlRegisterType<TerminalDisplay>("QMLTermWidget", 1, 0, "QMLTermWidget");
+    qmlRegisterType<KSession>("QMLTermWidget", 1, 0, "QMLTermSession");
+    return true;
+}
+bool qmlTermWidgetPlugin_static_types_registered = qmlTermWidgetPlugin_registerTypes();
+#endif
+
 void QmltermwidgetPlugin::registerTypes(const char *uri)
 {
     // @uri org.qterminal.qmlterminal
